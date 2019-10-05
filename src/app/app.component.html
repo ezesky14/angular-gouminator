@@ -1,39 +1,43 @@
-<div class="">
+<div class="container">
   <div>
     <h1>Gouminator</h1>
-    <hr/>
-    <h3>Calculez vore taux de goumin gràce à notre génerateur .Il vous suffit d'entrer votre rayon et le tour est joué.
-    </h3>
+    <hr />
+
+    <div class="alert alert-dismissible alert-info">
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+      Calculez vore taux de goumin gràce à notre génerateur .Il vous suffit d'entrer votre rayon et le tour est joué.
+    </div>
   </div>
 
-  <form [formGroup]="formGroup">
+  <form [formGroup]="formGroup" class="form-horizontal">
 
-    <div>
-      <label for="r" class="">Rayon </label>
-      <input class="" type="text" formControlName="rayon" name="r" placeholder="Rayon" />
-      <div class="hasError"  *ngIf="formGroup.controls.rayon.hasError('required')">
+    <div class="form-group">
+      <label class="control-label" for="r" class="">Rayon </label>
+      <input class="form-control" type="text" formControlName="rayon" name="r" placeholder="Rayon" />
+      
+      
+      <div class="hasError" *ngIf="formGroup.controls.rayon.hasError('required')">
         Champs requis
       </div>
 
-      <div class="hasError"  *ngIf="formGroup.controls.rayon.hasError('max')">
-         Entrez une valeur entre 0 et 100
-        </div>
+      <div class="hasError" *ngIf="formGroup.controls.rayon.hasError('max')">
+        Entrez une valeur entre 0 et 100
+      </div>
 
-        <div class="hasError"  *ngIf="formGroup.controls.rayon.hasError('pattern')">
-            Entrez une valeur numerique
-           </div>
+      <div class="hasError" *ngIf="formGroup.controls.rayon.hasError('pattern')">
+        Entrez une valeur numerique
+      </div>
     </div>
 
 
 
     <div class="">
-      <button (click)="submit()" [disabled]="formGroup.invalid">Calculer</button>
+      <button class="btn btn-info" (click)="submit()" [disabled]="formGroup.invalid">Calculer</button>
     </div>
 
 
-    <div class="">
-
-      <h2>Votre volume est : {{result}}</h2>
+    <div class="" *ngIf="result !== undefined">
+      <h3>Votre volume est : {{result}}</h3>
     </div>
   </form>
 </div>
